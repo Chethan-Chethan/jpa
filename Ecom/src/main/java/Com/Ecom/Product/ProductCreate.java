@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class ProductCreate {
 
-    public static void main(String[] args) {
+    public static                                                                                                                                                                                                     void main(String[] args) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
