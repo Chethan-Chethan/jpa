@@ -4,6 +4,9 @@ import com.xworkz.mobile.entity.MobileEntity;
 import com.xworkz.mobile.repository.MobileRepository;
 import com.xworkz.mobile.repository.MobileRepositoryImpl;
 
+import java.util.Collections;
+import java.util.List;
+
 public class MobileServiceImpl implements MobileService{
 
     MobileRepository repository = new MobileRepositoryImpl();
@@ -62,5 +65,26 @@ public class MobileServiceImpl implements MobileService{
             isDeleted = false;
         }
         return isDeleted;
+    }
+
+    @Override
+    public MobileEntity ValidateAndFindMobileEntityById(int id) {
+        System.out.println("Invoking validation");
+        MobileEntity validFetch = null;
+
+        if (id > 0) {
+            validFetch = repository.findMobileEntityById(id);
+        }
+        return validFetch;
+    }
+
+    @Override
+    public List<MobileEntity> validateAndFindAllMobileDetails() {
+        System.out.println("Invoking validateAndFindAll in ServiceImpl");
+        List<MobileEntity> list = repository.findAllMobileDetails();
+        if (list!=null && !list.isEmpty()) {
+            System.out.println("Mobile entities found: " + list.size());
+        }
+        return list;
     }
 }

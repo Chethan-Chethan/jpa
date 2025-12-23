@@ -6,32 +6,33 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 public class MobileRepositoryImpl implements MobileRepository {
 
+    static EntityManagerFactory emf = Persistence.createEntityManagerFactory("mobile");
 
     @Override
     public String saveMobileInfo(MobileEntity entity) {
         System.out.println("Invoking saveMobileInfo in RepositoryImpl");
         String isSaved = null;
 
-        EntityManagerFactory emf = null;
         EntityManager em = null;
         EntityTransaction et = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("mobile");
-            em = emf.createEntityManager();
+            em = this.emf.createEntityManager();
             et = em.getTransaction();
             et.begin();
-//            em.persist(entity);
-            MobileEntity search = em.find(MobileEntity.class,2);
-            System.out.println(search);
-            entity.setName("One Plus");
-            MobileEntity update = em.merge(entity);
-            System.out.println("Successfully updated: " + update);
-            MobileEntity found = em.find(MobileEntity.class, 1);
-            em.remove(found);
+            em.persist(entity);
+//            MobileEntity search = em.find(MobileEntity.class,2);
+//            System.out.println(search);
+//            entity.setName("One Plus");
+//            MobileEntity update = em.merge(entity);
+//            System.out.println("Successfully updated: " + update);
+//            MobileEntity found = em.find(MobileEntity.class, 1);
+//            em.remove(found);
             et.commit();
             isSaved = "Mobile info saved successfully";
         } catch (Exception e) {
@@ -42,24 +43,20 @@ public class MobileRepositoryImpl implements MobileRepository {
             if (em != null) {
                 em.close();
             }
-            if (emf != null) {
-                emf.close();
-            }
         }
         return isSaved;
-
     }
 
     @Override
     public boolean updatePriceQuantityMfdById(double price, int quantity, String mfd, int id) {
         System.out.println("Invoking updatePriceQuantityMfdById in RepositoryImpl");
         boolean isUpdate = false;
-        EntityManagerFactory emf = null;
+
         EntityManager em = null;
         EntityTransaction et = null;
+
         try {
-            emf = Persistence.createEntityManagerFactory("mobile");
-            em = emf.createEntityManager();
+            em = this.emf.createEntityManager();
             et = em.getTransaction();
             et.begin();
             MobileEntity entity = em.find(MobileEntity.class, id);
@@ -71,7 +68,6 @@ public class MobileRepositoryImpl implements MobileRepository {
                 et.commit();
                 isUpdate = true;
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             et.rollback();
@@ -79,9 +75,6 @@ public class MobileRepositoryImpl implements MobileRepository {
         } finally {
             if (em != null) {
                 em.close();
-            }
-            if (emf != null) {
-                emf.close();
             }
         }
         return isUpdate;
@@ -93,10 +86,10 @@ public class MobileRepositoryImpl implements MobileRepository {
         MobileEntity isUpdated = null;
         EntityManager em = null;
         EntityTransaction et = null;
-        EntityManagerFactory emf = null;
+
         try {
-             emf = Persistence.createEntityManagerFactory("mobile");
-             em = emf.createEntityManager();
+
+             em = this.emf.createEntityManager();
              et = em.getTransaction();
              et.begin();
              MobileEntity mobileEntity = em.find(MobileEntity.class, 4);
@@ -115,9 +108,6 @@ public class MobileRepositoryImpl implements MobileRepository {
             if (em != null) {
                 em.close();
             }
-            if (emf != null) {
-                emf.close();
-            }
         }
         return isUpdated;
     }
@@ -127,20 +117,21 @@ public class MobileRepositoryImpl implements MobileRepository {
         System.out.println("Deleting using Id");
         boolean delete = false;
 
-        EntityManagerFactory emf = null;
         EntityManager em = null;
         EntityTransaction et = null;
 
         try {
-            emf = Persistence.createEntityManagerFactory("mobile");
-            em = emf.createEntityManager();
+
+            em = this.emf.createEntityManager();
             et = em.getTransaction();
             et.begin();
             MobileEntity find = em.find(MobileEntity.class, id);
-            em.remove(find);
-            et.commit();
-            delete = true;
-            System.out.println("Deleted successfully");
+            if (find != null) {
+                em.remove(find);
+                et.commit();
+                delete = true;
+                System.out.println("Deleted successfully");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             et.rollback();
@@ -149,11 +140,46 @@ public class MobileRepositoryImpl implements MobileRepository {
             if (em != null) {
                 em.close();
             }
-            if (emf != null) {
-                emf.close();
-            }
         }
         return delete;
     }
 
+    @Override
+    public MobileEntity findMobileEntityById(int id) {
+        System.out.println("fetching data by implementation");
+        MobileEntity foundEntity = null;
+        EntityManager em = null;
+
+        try {
+            em = emf.createEntityManager();
+            foundEntity = em.find(MobileEntity.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return foundEntity;
+    }
+
+    @Override
+    public List<MobileEntity> findAllMobileDetails() {
+        System.out.println("Invoking findAllMobileENtities in RepositoryImpl");
+        List<MobileEntity> mobileEntities = null;
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findAllMobileEntities");
+            mobileEntities = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return mobileEntities;
+    }
 }

@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 
 @Table(name = "mobile_info")
+@NamedQuery(name = "findAllMobileEntities", query = "SELECT m from MobileEntity m")
 public class MobileEntity {
 
     @Id
