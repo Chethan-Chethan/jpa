@@ -83,4 +83,30 @@ public class PaymentServiceImpl implements PaymentService{
         }
         return list;
     }
+
+    @Override
+    public List<PaymentEntity> validateAndGetPaymentEntityByAmountPaymentModeTransactionStatus(double amount, String paymentMode, String transactionStatus) {
+        System.out.println("Invoking validate");
+        List<PaymentEntity> paymentList1 = null;
+
+        if (amount>0 && paymentMode!=null && !paymentMode.isEmpty() && transactionStatus!=null && !transactionStatus.isEmpty()) {
+            paymentList1 = repository.getPaymentEntityByAmountPaymentModeTransactionStatus(amount, paymentMode, transactionStatus);
+        } else {
+            paymentList1 = null;
+        }
+        return paymentList1;
+    }
+
+    @Override
+    public List<PaymentEntity> validateAndGetAmountAndTransactionStatus(double amount, String transactionStatus) {
+        System.out.println("Invoking validation");
+        List<PaymentEntity> paymentList2 = null;
+
+        if (amount>0 && transactionStatus!=null && !transactionStatus.isEmpty()) {
+            paymentList2 = repository.getAmountAndTransactionStatus(amount, transactionStatus);
+        } else {
+            paymentList2 = null;
+        }
+        return paymentList2;
+    }
 }

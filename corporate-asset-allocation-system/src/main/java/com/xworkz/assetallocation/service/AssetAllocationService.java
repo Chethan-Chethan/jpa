@@ -12,4 +12,6 @@ public interface AssetAllocationService {
     boolean validateAndDeleteById(int id);
     AssetAllocationEntity validateAndFindAssetEntityById(int id);
     List<AssetAllocationEntity> validateAndFindAllAssetDetails();
+    List<AssetAllocationEntity> validateAndGetAssetNameAssetTypeAssetStatus(String assetName, String assetType, String assetStatus);
+    List<AssetAllocationEntity> validateAndGetAssetTypeAsstStatus(String assetType, String assetStatus);
 }

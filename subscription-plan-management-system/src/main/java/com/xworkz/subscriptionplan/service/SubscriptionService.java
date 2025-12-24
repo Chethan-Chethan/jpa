@@ -12,4 +12,6 @@ public interface SubscriptionService {
     boolean validateAndDeleteById(int id);
     SubscriptionEntity validateAndFindSubscriptionPlanById(int id);
     List<SubscriptionEntity> validateAndFindAllDetails();
+    List<SubscriptionEntity> validateAndGetPlanNamePriceDurationMonths(String planName, double price, int durationMonths);
+    List<SubscriptionEntity> validateAndGetPlanNameMaxUsers(String planName, int maxUsers);
 }

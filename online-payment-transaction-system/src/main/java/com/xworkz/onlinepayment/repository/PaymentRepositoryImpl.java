@@ -163,4 +163,47 @@ public class PaymentRepositoryImpl implements PaymentRepository{
         }
         return paymentEntities;
     }
+
+    @Override
+    public List<PaymentEntity> getPaymentEntityByAmountPaymentModeTransactionStatus(double amount, String paymentMode, String transactionStatus) {
+        System.out.println("fetch getPaymentEntityByAmountPaymentModeTransactionStatus()");
+        List<PaymentEntity> fetch1 = null;
+
+        EntityManager em = null;
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findPaymentEntityByAmountPaymentModeTransactionStatus");
+            query.setParameter("amount", amount);
+            query.setParameter("paymentMode", paymentMode);
+            query.setParameter("transactionStatus", transactionStatus);
+            fetch1 = query.getResultList();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch1;
+    }
+
+    @Override
+    public List<PaymentEntity> getAmountAndTransactionStatus(double amount, String transactionStatus) {
+        System.out.println("fetching getAmountAndTransactionStatus()");
+        List<PaymentEntity> fetch2 = null;
+
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findAmountAndTransactionStatus");
+            query.setParameter("amount", amount);
+            query.setParameter("transactionStatus", transactionStatus);
+            fetch2 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fetch2;
+    }
 }

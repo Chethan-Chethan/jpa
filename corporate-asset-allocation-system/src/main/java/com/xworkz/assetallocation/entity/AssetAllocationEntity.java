@@ -14,6 +14,12 @@ import javax.persistence.*;
 
 @Table(name = "asset_allocation")
 @NamedQuery(name = "findAllDetails", query = "SELECT c from AssetAllocationEntity c")
+@NamedQuery(name = "findAssetNameAssetTypeAssetStatus",
+        query = "select x from AssetAllocationEntity x where x.assetName=:assetName and " +
+                "x.assetType=:assetType and x.assetStatus=:assetStatus")
+@NamedQuery(name = "findAssetTypeAsstStatus",
+        query = "select x from AssetAllocationEntity x where x.assetType=: assetType and " +
+                "x.assetStatus=: assetStatus")
 public class AssetAllocationEntity {
 
     @Id

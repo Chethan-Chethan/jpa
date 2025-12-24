@@ -11,6 +11,8 @@ public interface MobileService {
     boolean validateDeleteById(int id);
     MobileEntity ValidateAndFindMobileEntityById(int id);
     List<MobileEntity> validateAndFindAllMobileDetails();
+    List<MobileEntity> validateAndGetMobileEntityByMfdAndPriceAndQuantity(String mfd, double price, int quantity);
+    List<MobileEntity> validateAndGetMobileEntityByBrandAndPrice(String brand, double price);
 
 
 

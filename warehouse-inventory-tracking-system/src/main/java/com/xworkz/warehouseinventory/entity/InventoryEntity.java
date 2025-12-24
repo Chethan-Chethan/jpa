@@ -13,6 +13,8 @@ import javax.persistence.*;
 
 @Table(name = "warehouse_info")
 @NamedQuery(name = "findAllDetails", query = "SELECT b from InventoryEntity b")
+@NamedQuery(name = "findItemNameCategoryQuantity", query = "select x from InventoryEntity x where x.itemName=:itemName and x.category=:category and x.quantity=:quantity")
+@NamedQuery(name = "findCategoryAndQuantity", query = "select x from InventoryEntity x where x.category=:category and x.quantity=:quantity")
 public class InventoryEntity {
 
     @Id

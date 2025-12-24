@@ -11,4 +11,6 @@ public interface MobileRepository {
     boolean deleteById(int id);
     MobileEntity findMobileEntityById(int id);
     List<MobileEntity> findAllMobileDetails();
+    List<MobileEntity> getMobileEntityByMfdAndPriceAndQuantity(String mfd, double price, int quantity);
+    List<MobileEntity> getMobileEntityByBrandAndPrice(String brand, double price);
 }

@@ -12,4 +12,6 @@ public interface VehicleService {
     boolean validateAndDeleteById(int id);
     VehicleServiceHistory validateAndFetchDetailsById(int id);
     List<VehicleServiceHistory> validateAndFindAllVehicleDetails();
+    List<VehicleServiceHistory> validateAndGetServiceTypeServiceCostServiceCenter(String serviceType, double serviceCost, String serviceCenter);
+    List<VehicleServiceHistory> validateAndGetServiceTypeAndServiceCost(String serviceType, double serviceCost);
 }

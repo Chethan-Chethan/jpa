@@ -12,4 +12,6 @@ public interface Inventory {
     boolean deleteById(int id);
     InventoryEntity findInventoryById(int id);
     List<InventoryEntity> findAllInventoryDetails();
+    List<InventoryEntity> getItemNameCategoryQuantity(String itemName, String category, int quantity);
+    List<InventoryEntity> getCategoryAndQuantity(String category, int quantity);
 }

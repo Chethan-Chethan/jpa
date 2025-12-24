@@ -12,6 +12,8 @@ public interface InventoryService {
     boolean validateAndDeleteById(int id);
     InventoryEntity validAndFindInventoryById(int id);
     List<InventoryEntity> validateAndFindAllInventoryDetails();
+    List<InventoryEntity> validateAndGetItemNameCategoryQuantity(String itemName, String category, int quantity);
+    List<InventoryEntity> validateAndGetCategoryAndQuantity(String category, int quantity);
 
 
 }

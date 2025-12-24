@@ -47,8 +47,13 @@ public class PaymentRunner {
 //        PaymentEntity isFetched = service.validateAndFindPaymentEntityById(2);
 //        System.out.println(isFetched);
 
-        List<PaymentEntity> paymentList = service.validateAndFindAllPaymentDetails();
-        System.out.println(paymentList);
+//        List<PaymentEntity> paymentList = service.validateAndFindAllPaymentDetails();
+//        System.out.println(paymentList);
 
+//        List<PaymentEntity> fix = service.validateAndGetPaymentEntityByAmountPaymentModeTransactionStatus(1999, "Net Banking", "Failed");
+//        System.out.println(fix);
+
+        List<PaymentEntity> paymentEntityList = service.validateAndGetAmountAndTransactionStatus(899, "pending");
+        System.out.println(paymentEntityList);
     }
 }

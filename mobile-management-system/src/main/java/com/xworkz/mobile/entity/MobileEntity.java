@@ -14,6 +14,8 @@ import javax.persistence.*;
 
 @Table(name = "mobile_info")
 @NamedQuery(name = "findAllMobileEntities", query = "SELECT m from MobileEntity m")
+@NamedQuery(name = "findMobileEntityByMfdAndPriceAndQuantity", query = "SELECT a from MobileEntity a WHERE a.mfd=:mfdDate and a.price=:price and a.quantity=:quantity")
+@NamedQuery(name = "findMobileEntityByBrandAndPrice", query = "select x from MobileEntity x where x.brand=:brand and x.price=:price")
 public class MobileEntity {
 
     @Id

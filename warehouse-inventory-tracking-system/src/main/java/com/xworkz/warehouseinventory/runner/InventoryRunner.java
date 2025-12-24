@@ -4,6 +4,7 @@ import com.xworkz.warehouseinventory.entity.InventoryEntity;
 import com.xworkz.warehouseinventory.service.InventoryService;
 import com.xworkz.warehouseinventory.service.InventoryServiceImpl;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class InventoryRunner {
@@ -57,7 +58,13 @@ public class InventoryRunner {
 //        InventoryEntity fetching = inventoryService.validAndFindInventoryById(2);
 //        System.out.println(fetching);
 
-        List<InventoryEntity> inventoryList = inventoryService.validateAndFindAllInventoryDetails();
-        System.out.println(inventoryList);
+//        List<InventoryEntity> inventoryList = inventoryService.validateAndFindAllInventoryDetails();
+//        System.out.println(inventoryList);
+
+//        List<InventoryEntity> inventoryEntities1 = inventoryService.validateAndGetItemNameCategoryQuantity("steel bolts", "hardware", 1200);
+//        System.out.println(inventoryEntities1);
+
+        List<InventoryEntity> inventoryEntities2 = inventoryService.validateAndGetCategoryAndQuantity("safety", 900);
+        System.out.println(inventoryEntities2);
     }
 }

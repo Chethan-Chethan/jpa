@@ -182,4 +182,50 @@ public class MobileRepositoryImpl implements MobileRepository {
         }
         return mobileEntities;
     }
+
+    @Override
+    public List<MobileEntity> getMobileEntityByMfdAndPriceAndQuantity(String mfd, double price, int quantity) {
+        System.out.println("Invoking getMobileEntityByMfdAndPriceAndQuantity in RepositoryImpl");
+        List<MobileEntity> mobileEntityList = null;
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findMobileEntityByMfdAndPriceAndQuantity");
+            query.setParameter("mfdDate", mfd);
+            query.setParameter("price", price);
+            query.setParameter("quantity", quantity);
+            mobileEntityList = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return mobileEntityList;
+    }
+
+    @Override
+    public List<MobileEntity> getMobileEntityByBrandAndPrice(String brand, double price) {
+        System.out.println("fetching getMobileEntityByBrandAndPrice()");
+        List<MobileEntity> fetching = null;
+
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findMobileEntityByBrandAndPrice");
+            query.setParameter("brand", brand);
+            query.setParameter("price", price);
+            fetching = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetching;
+    }
 }

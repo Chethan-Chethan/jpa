@@ -12,4 +12,6 @@ public interface SubscriptionRepository {
     boolean deleteById(int id);
     SubscriptionEntity findSubscriptionPlanById(int id);
     List<SubscriptionEntity> findAllDetails();
+    List<SubscriptionEntity> getPlanNamePriceDurationMonths(String planName, double price, int durationMonths);
+    List<SubscriptionEntity> getPlanNameMaxUsers(String planName, int maxUsers);
 }

@@ -48,7 +48,13 @@ public class AssetAllocationRunner {
 //        AssetAllocationEntity fetched = service.validateAndFindAssetEntityById(4);
 //        System.out.println(fetched);
 
-        List<AssetAllocationEntity> assetList = service.validateAndFindAllAssetDetails();
-        System.out.println(assetList);
+//        List<AssetAllocationEntity> assetList = service.validateAndFindAllAssetDetails();
+//        System.out.println(assetList);
+
+//        List<AssetAllocationEntity> assetAllocationEntities = service.validateAndGetAssetNameAssetTypeAssetStatus("ID Card Reader", "Security Device", "ALLOCATED");
+//        System.out.println(assetAllocationEntities);
+
+        List<AssetAllocationEntity> assetAllocationEntities1 = service.validateAndGetAssetTypeAsstStatus("Networking", "MAINTENANCE");
+        System.out.println(assetAllocationEntities1);
     }
 }

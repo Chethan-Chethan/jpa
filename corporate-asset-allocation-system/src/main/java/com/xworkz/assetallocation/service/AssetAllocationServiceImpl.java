@@ -85,4 +85,30 @@ public class AssetAllocationServiceImpl implements AssetAllocationService{
         }
         return list;
     }
+
+    @Override
+    public List<AssetAllocationEntity> validateAndGetAssetNameAssetTypeAssetStatus(String assetName, String assetType, String assetStatus) {
+        System.out.println("Invoking validation");
+        List<AssetAllocationEntity> asset1 = null;
+
+        if (assetName!=null && !assetName.isEmpty() && assetType!=null && !assetType.isEmpty() && assetStatus!=null && !assetStatus.isEmpty()) {
+           asset1 =  repository.getAssetNameAssetTypeAssetStatus(assetName, assetType, assetStatus);
+        } else {
+            asset1 = null;
+        }
+        return asset1;
+    }
+
+    @Override
+    public List<AssetAllocationEntity> validateAndGetAssetTypeAsstStatus(String assetType, String assetStatus) {
+        System.out.println("Invoking validation");
+        List<AssetAllocationEntity> asset2 = null;
+
+        if (assetType!=null && !assetType.isEmpty() && assetStatus!=null && !assetStatus.isEmpty()) {
+            asset2 = repository.getAssetTypeAsstStatus(assetType, assetStatus);
+        } else {
+            asset2 = null;
+        }
+        return asset2;
+    }
 }

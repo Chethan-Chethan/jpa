@@ -49,7 +49,13 @@ public class SubscriptionRunner {
 //        SubscriptionEntity fetching = service.validateAndFindSubscriptionPlanById(4);
 //        System.out.println(fetching);
 
-        List<SubscriptionEntity> planEntity = service.validateAndFindAllDetails();
-        System.out.println(planEntity);
+//        List<SubscriptionEntity> planEntity = service.validateAndFindAllDetails();
+//        System.out.println(planEntity);
+
+//        List<SubscriptionEntity> plan1 = service.validateAndGetPlanNamePriceDurationMonths("Premium Plan", 1499, 12);
+//        System.out.println(plan1);
+
+        List<SubscriptionEntity> plan2 = service.validateAndGetPlanNameMaxUsers("Enterprise Plan", 10);
+        System.out.println(plan2);
     }
 }

@@ -162,4 +162,51 @@ public class AssetAllocationRepositoryImpl implements AssetAllocationRepository{
         }
         return assetEntity;
     }
+
+    @Override
+    public List<AssetAllocationEntity> getAssetNameAssetTypeAssetStatus(String assetName, String assetType, String assetStatus) {
+        System.out.println("fetching getAssetNameAssetTypeAssetStatus()");
+        List<AssetAllocationEntity> fetch1 = null;
+
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findAssetNameAssetTypeAssetStatus");
+            query.setParameter("assetName" , assetName);
+            query.setParameter("assetType" , assetType);
+            query.setParameter("assetStatus" , assetStatus);
+            fetch1 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch1;
+    }
+
+    @Override
+    public List<AssetAllocationEntity> getAssetTypeAsstStatus(String assetType, String assetStatus) {
+        System.out.println("fetching getAssetTypeAsstStatus()");
+        List<AssetAllocationEntity> fetch2 = null;
+
+        EntityManager em = null;
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findAssetTypeAsstStatus");
+            query.setParameter("assetType", assetType);
+            query.setParameter("assetStatus", assetStatus);
+            fetch2 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+
+        return fetch2;
+    }
 }

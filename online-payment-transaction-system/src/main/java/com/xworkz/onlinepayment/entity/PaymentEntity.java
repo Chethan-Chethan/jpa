@@ -13,6 +13,9 @@ import javax.persistence.*;
 
 @Table(name = "payment_transaction")
 @NamedQuery(name = "findAllDetails" , query =  "SELECT x from PaymentEntity x")
+@NamedQuery(name = "findPaymentEntityByAmountPaymentModeTransactionStatus",
+        query = "select m from PaymentEntity m where amount=:amount and m.paymentMode=:paymentMode and m.transactionStatus=:transactionStatus")
+@NamedQuery(name = "findAmountAndTransactionStatus", query = "select b from PaymentEntity b where b.amount=:amount and b.transactionStatus=:transactionStatus")
 public class PaymentEntity {
 
     @Id

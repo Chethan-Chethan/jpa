@@ -178,4 +178,51 @@ public class InventoryImpl implements Inventory{
         }
         return inventoryEntities;
     }
+
+    @Override
+    public List<InventoryEntity> getItemNameCategoryQuantity(String itemName, String category, int quantity) {
+        System.out.println("fetching getItemNameCategoryQuantity()");
+        List<InventoryEntity> fetch1 = null;
+
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findItemNameCategoryQuantity");
+            query.setParameter("itemName", itemName);
+            query.setParameter("category", category);
+            query.setParameter("quantity", quantity);
+            fetch1 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch1;
+    }
+
+    @Override
+    public List<InventoryEntity> getCategoryAndQuantity(String category, int quantity) {
+        System.out.println("fetching getCategoryAndQuantity()");
+        List<InventoryEntity> fetch2 = null;
+
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findCategoryAndQuantity");
+            query.setParameter("category", category);
+            query.setParameter("quantity", quantity);
+            fetch2 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch2;
+    }
 }

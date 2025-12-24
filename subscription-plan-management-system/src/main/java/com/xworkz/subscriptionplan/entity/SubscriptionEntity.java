@@ -13,6 +13,12 @@ import javax.persistence.*;
 
 @Table(name = "subscription_plan")
 @NamedQuery(name = "findAllSubscriptionEntities", query = "SELECT n from SubscriptionEntity n")
+@NamedQuery(name = "findPlanNamePriceDurationMonths",
+        query = "select x from SubscriptionEntity x where x.planName= : name and " +
+                "x.price = : money and x.durationMonths= : days")
+@NamedQuery(name = "findPlanNameMaxUsers",
+        query = "select x from SubscriptionEntity x where " +
+                "x.planName=: name and x.maxUsers=: users")
 public class SubscriptionEntity {
 
     @Id

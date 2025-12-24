@@ -12,4 +12,6 @@ public interface VehicleServiceRepository {
     boolean deleteById(int id);
     VehicleServiceHistory fetchDetailsById(int id);
     List<VehicleServiceHistory> findAllVehicleDetails();
+    List<VehicleServiceHistory> getServiceTypeServiceCostServiceCenter(String serviceType, double serviceCost, String serviceCenter);
+    List<VehicleServiceHistory> getServiceTypeAndServiceCost(String serviceType, double serviceCost);
 }

@@ -11,4 +11,6 @@ public interface PaymentService {
     boolean ValidateAndDeleteById(int id);
     PaymentEntity validateAndFindPaymentEntityById(int id);
     List<PaymentEntity> validateAndFindAllPaymentDetails();
+    List<PaymentEntity> validateAndGetPaymentEntityByAmountPaymentModeTransactionStatus(double amount, String paymentMode, String transactionStatus);
+    List<PaymentEntity> validateAndGetAmountAndTransactionStatus(double amount, String transactionStatus);
 }

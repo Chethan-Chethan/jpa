@@ -160,4 +160,51 @@ public class SubscriptionRepositoryImpl implements SubscriptionRepository{
         }
         return entity;
     }
+
+    @Override
+    public List<SubscriptionEntity> getPlanNamePriceDurationMonths(String planName, double price, int durationMonths) {
+        System.out.println("fetching getPlanNamePriceDurationMonths()");
+        List<SubscriptionEntity> fetch1 = null;
+
+        EntityManager em = null;
+
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findPlanNamePriceDurationMonths");
+            query.setParameter("name", planName);
+            query.setParameter("money", price);
+            query.setParameter("days", durationMonths);
+            fetch1 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em!=null) {
+                em.close();
+            }
+        }
+        return fetch1;
+    }
+
+    @Override
+    public List<SubscriptionEntity> getPlanNameMaxUsers(String planName, int maxUsers) {
+        System.out.println("fetching getPlanNameMaxUsers()");
+        List<SubscriptionEntity> fetch2 = null;
+
+        EntityManager em = null;
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findPlanNameMaxUsers");
+            query.setParameter("name", planName);
+            query.setParameter("users", maxUsers);
+            fetch2 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            fetch2 = null;
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch2;
+    }
 }

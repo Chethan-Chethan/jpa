@@ -84,4 +84,30 @@ public class InventoryServiceImpl implements InventoryService{
         }
         return list;
     }
+
+    @Override
+    public List<InventoryEntity> validateAndGetItemNameCategoryQuantity(String itemName, String category, int quantity) {
+        System.out.println("Invoking validation");
+        List<InventoryEntity> inventory1 = null;
+
+        if (itemName!=null && !itemName.isEmpty() && category!=null && !category.isEmpty() && quantity>=0) {
+            inventory1 = repository.getItemNameCategoryQuantity(itemName, category, quantity);
+        } else {
+            inventory1 = null;
+        }
+        return inventory1;
+    }
+
+    @Override
+    public List<InventoryEntity> validateAndGetCategoryAndQuantity(String category, int quantity) {
+        System.out.println("Invoking validate");
+        List<InventoryEntity> inventory2 = null;
+
+        if (category!=null && !category.isEmpty() && quantity>=0) {
+            inventory2 = repository.getCategoryAndQuantity(category, quantity);
+        } else {
+            inventory2 = null;
+        }
+        return inventory2;
+    }
 }

@@ -56,7 +56,13 @@ public class VehicleServiceRunner {
 //        VehicleServiceHistory fetching = service.validateAndFetchDetailsById(2);
 //        System.out.println(fetching);
 
-        List<VehicleServiceHistory> vehicleList = service.validateAndFindAllVehicleDetails();
-        System.out.println(vehicleList);
+//        List<VehicleServiceHistory> vehicleList = service.validateAndFindAllVehicleDetails();
+//        System.out.println(vehicleList);
+
+//        List<VehicleServiceHistory> vehicle1 = service.validateAndGetServiceTypeServiceCostServiceCenter("Oil Change", 2500, "Bosch Service Center");
+//        System.out.println(vehicle1);
+
+        List<VehicleServiceHistory> veh = service.validateAndGetServiceTypeAndServiceCost("Engine Check", 6500);
+        System.out.println(veh);
     }
 }

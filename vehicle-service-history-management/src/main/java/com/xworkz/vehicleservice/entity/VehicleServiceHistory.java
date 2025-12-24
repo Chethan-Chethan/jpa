@@ -13,6 +13,12 @@ import javax.persistence.*;
 
 @Table(name = "vehicle_service_history")
 @NamedQuery(name = "findAllDetails", query = "SELECT a from VehicleServiceHistory a")
+@NamedQuery(name = "findServiceTypeServiceCostServiceCenter",
+        query = "select x from VehicleServiceHistory x where x.serviceType=:serviceType and " +
+                "x.serviceCost=:serviceCost and x.serviceCenter=:serviceCenter")
+@NamedQuery(name = "findServiceTypeAndServiceCost",
+        query = "select x from VehicleServiceHistory x where x.serviceType=:serviceType and " +
+                "x.serviceCost=:serviceCost")
 public class VehicleServiceHistory {
 
     @Id

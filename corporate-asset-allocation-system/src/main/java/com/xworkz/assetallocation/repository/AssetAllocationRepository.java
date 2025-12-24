@@ -12,4 +12,6 @@ public interface AssetAllocationRepository {
     boolean deleteById(int id);
     AssetAllocationEntity findAssetEntityById(int id);
     List<AssetAllocationEntity> findAllAssetDetails();
+    List<AssetAllocationEntity> getAssetNameAssetTypeAssetStatus(String assetName, String assetType, String assetStatus);
+    List<AssetAllocationEntity> getAssetTypeAsstStatus(String assetType, String assetStatus);
 }

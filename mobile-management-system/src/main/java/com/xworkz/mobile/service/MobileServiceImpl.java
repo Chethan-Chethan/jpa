@@ -87,4 +87,31 @@ public class MobileServiceImpl implements MobileService{
         }
         return list;
     }
+
+    @Override
+    public List<MobileEntity> validateAndGetMobileEntityByMfdAndPriceAndQuantity(String mfd, double price, int quantity) {
+        System.out.println("Invoking validation");
+        List<MobileEntity> mobileEntityList = null;
+
+        if(mfd!=null && !mfd.isEmpty() && price>0 && quantity>=0){
+         mobileEntityList = repository.getMobileEntityByMfdAndPriceAndQuantity(mfd, price, quantity);
+            } else {
+             mobileEntityList = null;
+            }
+
+        return mobileEntityList;
+    }
+
+    @Override
+    public List<MobileEntity> validateAndGetMobileEntityByBrandAndPrice(String brand, double price) {
+        System.out.println("Invoking validating");
+        List<MobileEntity> mobileEntities = null;
+
+        if (brand!=null && !brand.isEmpty() && price>0) {
+            mobileEntities = repository.getMobileEntityByBrandAndPrice(brand, price);
+        } else {
+            mobileEntities = null;
+        }
+        return mobileEntities;
+    }
 }

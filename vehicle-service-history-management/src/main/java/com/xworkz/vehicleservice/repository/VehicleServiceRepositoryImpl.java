@@ -167,4 +167,49 @@ public class VehicleServiceRepositoryImpl implements VehicleServiceRepository{
         }
         return vehicleEntity;
     }
+
+    @Override
+    public List<VehicleServiceHistory> getServiceTypeServiceCostServiceCenter(String serviceType, double serviceCost, String serviceCenter) {
+        System.out.println("fetching getServiceTypeServiceCostServiceCenter()");
+        List<VehicleServiceHistory> fetch1 = null;
+
+        EntityManager em = null;
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findServiceTypeServiceCostServiceCenter");
+            query.setParameter("serviceType", serviceType);
+            query.setParameter("serviceCost", serviceCost);
+            query.setParameter("serviceCenter", serviceCenter);
+            fetch1 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch1;
+    }
+
+    @Override
+    public List<VehicleServiceHistory> getServiceTypeAndServiceCost(String serviceType, double serviceCost) {
+        System.out.println("fetching getServiceTypeAndServiceCost()");
+        List<VehicleServiceHistory> fetch2 = null;
+
+        EntityManager em = null;
+        try {
+            em = this.emf.createEntityManager();
+            Query query = em.createNamedQuery("findServiceTypeAndServiceCost");
+            query.setParameter("serviceType", serviceType);
+            query.setParameter("serviceCost", serviceCost);
+            fetch2 = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return fetch2;
+    }
 }

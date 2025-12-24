@@ -53,8 +53,14 @@ public class MobileRunner {
 //        }
 //        MobileEntity fetch = mobileService.ValidateAndFindMobileEntityById(3);
 //        System.out.println(fetch);
+//
+//        List<MobileEntity> mobileEntityList = mobileService.validateAndFindAllMobileDetails();
+//        System.out.println(mobileEntityList);
 
-        List<MobileEntity> mobileEntityList = mobileService.validateAndFindAllMobileDetails();
-        System.out.println(mobileEntityList);
+//        List<MobileEntity> mobileEntities = mobileService.validateAndGetMobileEntityByMfdAndPriceAndQuantity("2023-01-01", 50000, 100);
+//        System.out.println(mobileEntities);
+
+        List<MobileEntity> mobileEntities = mobileService.validateAndGetMobileEntityByBrandAndPrice("Samsung", 51000);
+        System.out.println(mobileEntities);
     }
 }

@@ -86,4 +86,30 @@ public class VehicleServiceImpl implements VehicleService{
         }
         return list;
     }
+
+    @Override
+    public List<VehicleServiceHistory> validateAndGetServiceTypeServiceCostServiceCenter(String serviceType, double serviceCost, String serviceCenter) {
+        System.out.println("Invoking validation");
+        List<VehicleServiceHistory> fetch1 = null;
+
+        if (serviceType!=null && !serviceType.isEmpty() && serviceCost>0 && serviceCenter!=null && !serviceCenter.isEmpty()) {
+            fetch1 = repository.getServiceTypeServiceCostServiceCenter(serviceType, serviceCost, serviceCenter);
+        } else {
+            fetch1 = null;
+        }
+        return fetch1;
+    }
+
+    @Override
+    public List<VehicleServiceHistory> validateAndGetServiceTypeAndServiceCost(String serviceType, double serviceCost) {
+        System.out.println("Invoking validation");
+        List<VehicleServiceHistory> vehicle2 = null;
+
+        if (serviceType!=null && !serviceType.isEmpty() && serviceCost>0) {
+            vehicle2 = repository.getServiceTypeAndServiceCost(serviceType, serviceCost);
+        } else {
+            vehicle2 = null;
+        }
+        return vehicle2;
+    }
 }

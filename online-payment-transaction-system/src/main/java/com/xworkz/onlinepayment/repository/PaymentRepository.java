@@ -11,4 +11,6 @@ public interface PaymentRepository {
     boolean deleteById(int id);
     PaymentEntity findPaymentEntityById(int id);
     List<PaymentEntity> findAllPaymentDetails();
+    List<PaymentEntity> getPaymentEntityByAmountPaymentModeTransactionStatus(double amount, String paymentMode, String transactionStatus);
+    List<PaymentEntity> getAmountAndTransactionStatus(double amount, String transactionStatus);
 }

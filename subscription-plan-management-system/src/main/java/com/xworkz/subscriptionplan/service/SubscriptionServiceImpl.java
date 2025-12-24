@@ -84,4 +84,30 @@ public class SubscriptionServiceImpl implements SubscriptionService{
         }
         return list;
     }
+
+    @Override
+    public List<SubscriptionEntity> validateAndGetPlanNamePriceDurationMonths(String planName, double price, int durationMonths) {
+        System.out.println("Invoking validation");
+        List<SubscriptionEntity> subscriptionEntities1 = null;
+
+        if (planName!=null && !planName.isEmpty() && price>0 && durationMonths>0) {
+            subscriptionEntities1 = repository.getPlanNamePriceDurationMonths(planName, price, durationMonths);
+        } else {
+            subscriptionEntities1 = null;
+        }
+        return subscriptionEntities1;
+    }
+
+    @Override
+    public List<SubscriptionEntity> validateAndGetPlanNameMaxUsers(String planName, int maxUsers) {
+        System.out.println("Invoking validation");
+        List<SubscriptionEntity> subscriptionEntities2 = null;
+
+        if (planName!=null && !planName.isEmpty() && maxUsers>0) {
+            subscriptionEntities2 = repository.getPlanNameMaxUsers(planName, maxUsers);
+        } else {
+            subscriptionEntities2 = null;
+        }
+        return subscriptionEntities2;
+    }
 }
